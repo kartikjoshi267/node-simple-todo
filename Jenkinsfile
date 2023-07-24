@@ -1,10 +1,19 @@
 pipeline {
     agent any
+    tools {
+        nodejs "node"
+    }
 
     stages {
         stage('Clone Repo') {
             steps {
                 git url:'https://github.com/kartikjoshi267/node-simple-todo', branch:'main'
+            }
+        }
+        stage('Test') {
+            steps {
+                git url:'https://github.com/kartikjoshi267/node-simple-todo', branch:'main'
+                sh "npm install && npm run test"
             }
         }
         stage('Build') {
